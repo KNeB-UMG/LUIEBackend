@@ -49,14 +49,53 @@ use ApiPlatform\OpenApi\Model;
             ),
             description: 'Creates a new entry',
             name: 'create_entry'
-        )
+        ),
+         new Post(
+             uriTemplate: '/api/sendevaluation',
+             openapi: new Model\Operation(
+                 requestBody: new Model\RequestBody(
+                     content: new ArrayObject([
+                         'application/json' => [
+                             'schema' => [
+                                 'type' => 'object',
+                                 'properties' => [
+                                     'userId' => [
+                                         'type' => 'string',
+                                         'example'=> 'hash21623123m',
+                                     ],
+                                     'interfaceName' => [
+                                         'type' => 'string',
+                                         'example'=> 'LUI3'
+                                     ],
+                                     'grade1' => [
+                                         'type' => 'integer',
+                                         'example'=> 1
+                                     ],
+                                     'grade2' => [
+                                         'type' => 'integer',
+                                         'example'=> 1
+                                     ],
+                                     'grade3' => [
+                                         'type' => 'integer',
+                                         'example'=> 1
+                                     ],
+                                 ],
+                                 'required' => ['email','age','gender','loe'],
+                             ]
+                         ]
+                     ])
+                 )
+             ),
+             description: 'send user evaluation of a test',
+             name: 'send_evaluation'
+         )
     ],
     formats: ['json']
 )]
 class UserData
 {
     #[ORM\Id]
-    #[ORM\Column(length: 32, unique: true)]
+    #[ORM\Column(length: 64, unique: true)]
     private ?string $id = null;
 
     #[ORM\Column(type: 'json')]
