@@ -84,7 +84,7 @@ class UserDataController extends AbstractController
             $entityManager->flush();
             return new JsonResponse(
                 ['status' => 'succesfully renewed session',
-                    'currentStep'=>$namesArray[0],
+                    'currentStep'=>$userData->getData()['currentStep'],
                     'token'=>$token
                 ], Response::HTTP_OK);
         }
