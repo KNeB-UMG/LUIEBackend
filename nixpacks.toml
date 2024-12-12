@@ -1,0 +1,20 @@
+[phases.setup]
+commands = [
+    "composer install --no-dev --optimize-autoloader",
+    "php bin/console cache:warmup"
+]
+
+[phases.build]
+commands = [
+    "yarn install --frozen-lockfile",
+    "yarn build"
+]
+
+[phases.start]
+commands = [
+    "php bin/console cache:clear",
+    "php-fpm"
+]
+
+[static]
+directory = "public"
