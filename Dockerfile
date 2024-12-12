@@ -32,8 +32,9 @@ WORKDIR /var/www/symfony
 # Copy application files
 COPY . /var/www/symfony
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/symfony \
+# Ensure var directory exists
+RUN mkdir -p /var/www/symfony/var \
+    && chown -R www-data:www-data /var/www/symfony \
     && chmod -R 775 /var/www/symfony/var
 
 # Expose Symfony's default port
