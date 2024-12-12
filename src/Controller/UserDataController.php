@@ -23,12 +23,12 @@ class UserDataController extends AbstractController
         $normalInterfaceArray=[
             'UI1','UI2','UI3','UI4','UI5',
             'UI6','UI7','UI8','UI9','UI10',
-            'UI11','UI12','UI13','UI14','UI15'
+            'UI11','UI12','UI13','UI14'
         ];
         $delayedInterfaceArray=[
             'LUI1','LUI2','LUI3','LUI4','LUI5',
             'LUI6','LUI7','LUI8','LUI9','LUI10',
-            'LUI11','LUI12','LUI13','LUI14','LUI15'
+            'LUI11','LUI12','LUI13','LUI14'
         ];
         shuffle($normalInterfaceArray);
         shuffle($delayedInterfaceArray);
