@@ -29,10 +29,19 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | b
 # Set working directory
 WORKDIR /var/www/symfony
 
-# Copy application files
-COPY . /var/www/symfony
+# Copy composer files first
+COPY composer.json composer.lock ./
 
-# Ensure var directory exists
+# Install dependencies
+RUN composer install --no-scripts --no-autoloader
+
+# Copy the rest of the application files
+COPY . .
+
+# Generate autoloader and run scripts
+RUN composer dump-autoload --optimize && composer run-script post-install-cmd
+
+# Ensure var directory exists and set permissions
 RUN mkdir -p /var/www/symfony/var \
     && chown -R www-data:www-data /var/www/symfony \
     && chmod -R 775 /var/www/symfony/var
