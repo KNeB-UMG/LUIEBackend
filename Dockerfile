@@ -41,4 +41,4 @@ RUN mkdir -p /var/www/symfony/var \
 EXPOSE 8000
 
 # Set the entrypoint
-ENTRYPOINT ["symfony", "server:start", "--no-tls", "--port=8000", "--dir=/var/www/symfony", "--allow-http", "0.0.0.0"]
+ENTRYPOINT ["symfony", "local:server:start", "--no-tls", "--port=8000", "--dir=/var/www/symfony", "--allow-http", "--allow-all-ip"]
