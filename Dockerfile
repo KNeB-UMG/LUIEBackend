@@ -40,5 +40,5 @@ RUN mkdir -p /var/www/symfony/var \
 # Expose Symfony's default port
 EXPOSE 8000
 
-# Set the entrypoint php bin/console server:start *:8080
-ENTRYPOINT ["php", "bin/console", "server:start", "*:8000"]
+# Set the entrypoint
+ENTRYPOINT ["symfony", "server:start", "--no-tls", "--port=8000", "--dir=/var/www/symfony", "--allow-http", "0.0.0.0"]
